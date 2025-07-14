@@ -1,0 +1,13 @@
+server:
+  port: 40000
+
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @spring.active@
+
+
+tlog:
+  enable-invoke-time-print: true
+  pattern: '[$spanId][$traceId]'
