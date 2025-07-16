@@ -30,15 +30,16 @@ pipeline {
     }
     // 本地部署
 	stage('重启Java容器') {
-		steps {
-			script {
-				sh """
-					docker stop ${CONTAINER_NAME} || true
-					docker rm ${CONTAINER_NAME} || true
-					docker run -itd -u root --name ${CONTAINER_NAME} -p 40000:40000 -v /var/docker/my-java-template/app:/app ${IMAGE_NAME}
-				"""
-                echo '重启Java容器完成'
-			}
-		}
+      steps {
+        script {
+          sh """
+            docker stop my-java-template || true
+            docker rm my-java-template || true
+            docker run -itd -u root --name my-java-template -p 40000:40000 -v /var/docker/my-java-template/app:/app my-java-template
+          """
+          echo '重启Java容器完成'
+        }
+      }
 	}
+  }
 }
