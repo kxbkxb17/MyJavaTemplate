@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  tools {
+      jdk 'jdk21'
+      maven 'maven3'
+  }
+
   stages {
     stage('拉取代码') {
       steps {
@@ -9,6 +14,7 @@ pipeline {
     }
     stage('打包Java项目') {
           steps {
+            sh 'java -version'
             sh 'mvn clean package -Dmaven.test.skip=true'
             echo 'mvn package success.'
           }
